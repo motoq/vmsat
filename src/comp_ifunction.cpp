@@ -14,7 +14,7 @@
 /*
  * Parses function label name and options.
  */
-void CompIFunction::report_options(std::string rptstr)
+void CompIFunction::report_options(const std::string& rptstr)
 {
     // Initialize function label with input string.  Remove options
     // while parsing until only the label is left.
@@ -62,6 +62,35 @@ void CompIFunction::report_options(std::string rptstr)
   } else {
     do_file = true;                         // Default to filename
   }
+}
+
+
+std::array<int, 2> CompIFunction::find_comp_locs(
+                     const std::string& lbl1, const  std::string& lbl2,
+                     const std::vector<std::unique_ptr<CompIFunction>> &comps)
+{
+  std::array<int, 2> vals {{ -1, -1}};
+
+  bool found_first  {false};
+  bool found_second {false};
+  unsigned int nrpts = static_cast<unsigned int>(comps.size());
+    // Search through list of comp functions and locate index
+    // corresponding to function labels that are to be compared
+  for (unsigned int ii=0; ii<nrpts; ++ii) {
+    if (comps[ii]->report_label()) {
+      if (!found_first  &&  comps[ii]->label().compare(lbl1) == 0) {
+        found_first = true;
+        vals[0] = ii;
+      } else if (!found_second  &&  comps[ii]->label().compare(lbl2) == 0) {
+        found_second = true;
+        vals[1] = ii;
+      }
+      if (found_first  &&  found_second) {
+          break;
+      }
+    }
+  }
+  return vals;
 }
 
 

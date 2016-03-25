@@ -11,6 +11,7 @@
 
 #include <memory>
 #include <ostream>
+#include <array>
 #include <map>
 #include <vector>
 #include <string>
@@ -152,7 +153,7 @@ class CompIFunction {
      *
      * @throws   invalid_argument
      */
-    void report_options(std::string report_str);
+    void report_options(const std::string& report_str);
 
     /**
      * @return   If true, outputs are to be sent to the requested output
@@ -169,6 +170,26 @@ class CompIFunction {
      * @param   Sets the number of records.
      */
     void num_rec(unsigned int nr) { nrec = nr; }
+
+    /**
+     * @param   lbl1   Name of first function to find in comps list
+     * @param   lbl2   Name of second function to find in comps list
+     * @param   comps  List to search for comps with lbl1 and lbl2 names
+     *
+     * @return   Locations in comps.  Negative values indicate label not
+     *           found.
+     */
+    std::array<int, 2> find_comp_locs(
+                     const std::string& lbl1, const  std::string& lbl2,
+                     const std::vector<std::unique_ptr<CompIFunction>> &comps);
+/*
+    {
+       std::array<int, 2> vals {{ -1, -1}};
+       vals[0] = 7;
+       vals[1] = 5;
+       return vals;
+    }
+*/
 
     /**
      * Adds a set of units to this functions outputs.  See num_unit_types(),

@@ -10,6 +10,7 @@
 #include <iostream>
 #include <fstream>
 #include <stdexcept>
+#include <array>
 #include <vector>
 #include <string>
 
@@ -28,29 +29,20 @@ CompRSS::CompRSS(const std::vector<std::string> &funct_params,
   comps_ptr = &comps;
   unsigned int nparams = static_cast<unsigned int>(funct_params.size());
   if (nparams < 5  &&  nparams > 2) {
-    bool found_first = false;
-    bool found_second = false;
-    unsigned int nrpts = static_cast<unsigned int>(comps.size());
-      // Search through list of comp functions and locate index
-      // corresponding to function labels that are to be compared
-    for (unsigned int ii=0; ii<nrpts; ++ii) {
-      if (comps[ii]->report_label()) {
-        if (!found_first && comps[ii]->label().compare(funct_params[1]) == 0) {
-          label1 = comps[ii]->label();
-          found_first = true;
-          f1ndx = ii;
-        } else if (!found_second  &&
-                   comps[ii]->label().compare(funct_params[2]) == 0) {
-          label2 = comps[ii]->label();
-          found_second = true;
-          f2ndx = ii;
-        }
-        if (found_first  &&  found_second) {
-          found = true;
-          break;
-        }
-      }
+    label1 = funct_params[1];
+    label2 = funct_params[2];
+      // Locate functions by labels
+    std::array<int, 2> fndxs = CompIFunction::find_comp_locs(label1, label2,
+                                                                      comps);
+    if (fndxs[0] >= 0  &&  fndxs[1] >=0) {
+      found = true;
+      f1ndx = fndxs[0];
+      f2ndx = fndxs[1];
     }
+
+      // Initial check for compatibility - number of records needs to
+      // still be checked during execution of this function since the
+      // input functions probably haven't been populated yet.
     if (!found) {
       std::cerr << "\nRSS types not found\n";
       throw std::invalid_argument("Invalid RSS parameters");
@@ -106,6 +98,8 @@ void CompRSS::execute(const CompISimulation &ci)
     } else {
       std::cerr << "\nRSS types don't match or have moved\n";
     }
+  } else {
+    std::cerr << "\nRSS not found or labels no longer match\n";
   } 
 }
 
@@ -124,6 +118,7 @@ void CompRSS::report(std::ostream &out) const
     // Send readable text to stream output
   out << "\nRSS " << (*comps_ptr)[f1ndx]->label() <<
             " & " << (*comps_ptr)[f2ndx]->label();
+  out << "\nNumber of records compared:  " << nval;
   if (CompIFunction::report_stream()) {
     for (int ii=0; ii<nval; ++ii) {
       JulianDate jd = cmp_lst[ii].timeStamp();

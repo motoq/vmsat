@@ -82,7 +82,7 @@ class GregDate {
     static constexpr int JAN  {1};
     static constexpr int FEB  {2};
     static constexpr int DEC {12};
-    int yr{1957}, mnth{10}, dy{4};
+    int yr {1957}, mnth {10}, dy {4};
 };
 
 #endif  // UTL_GREG_DATE_H
