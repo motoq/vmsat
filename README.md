@@ -21,6 +21,7 @@ required) is the Eigen C++ template library for linear algebra
 <http://eigen.tuxfamily.org>.
 
 Core concepts behind VMSAT are:
+
 1. Provide useful built in astrodynamics models and analysis tools
 2. Provide convenient access to SOFA functionality
 3. Supply an interface to external legacy libraries that have fallen out
@@ -32,6 +33,7 @@ Core concepts behind VMSAT are:
    or algorithms prototyped
 
 C++ was chosen for development because:
+
 1. It plays well with legacy C and FORTRAN libraries
 2. A number of mature and fast C++ math libraries are available
 3. Code designed to run on hardware can be tested
