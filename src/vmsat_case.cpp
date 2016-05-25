@@ -20,9 +20,9 @@
 #include <utl_time_of_day.h>
 #include <astro_julian_date.h>
 
-static void reset_stream(std::istream &);
+static void reset_stream(std::istream&);
 
-VmsatCase::VmsatCase(std::istream &is)
+VmsatCase::VmsatCase(std::istream& is)
 {
     // Record start of case description in stream for error feedback
   this->case_pos0 = is.tellg();
@@ -167,7 +167,7 @@ void VmsatCase::to_stream(std::ostream &out)
 
 
 void VmsatCase::parse_keyword_block(CaseKeyWord ndx,
-                                    const std::vector<std::string> &inputs)
+                                    const std::vector<std::string>& inputs)
 {
   switch (ndx) {
     case CaseKeyWord::NONE:
@@ -187,7 +187,7 @@ void VmsatCase::parse_keyword_block(CaseKeyWord ndx,
             case CompType::NONE:
               ;
           }
-        } catch(std::out_of_range &oor) {
+        } catch(std::out_of_range& oor) {
           std::cerr << "\n" << "Not a COMPUTE Function: " << inputs[0] << "\n";
           throw;
         }
@@ -225,7 +225,7 @@ void VmsatCase::parse_keyword_block(CaseKeyWord ndx,
  * parsed data (say, a set of characters becomes an int) are logically
  * bad (say, trying to create Feb 31st).
  */
-static void reset_stream(std::istream &bad_is)
+static void reset_stream(std::istream& bad_is)
 {
   bad_is.clear();
   std::string bad_token;

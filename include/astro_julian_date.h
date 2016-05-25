@@ -46,12 +46,12 @@ class JulianDate {
     /**
      * See equivalent set method for details.
      */
-    JulianDate(const JulianDate &jd);
+    JulianDate(const JulianDate& jd);
 
     /**
      * See equivalent set method for details.
      */
-    JulianDate(const GregDate &gd,
+    JulianDate(const GregDate& gd,
                int hr = 0, int min = 0, double sec = 0.0);
 
     /**
@@ -69,7 +69,7 @@ class JulianDate {
      *
      * @param   jd   JD to copy
      */
-    void set(const JulianDate &jd);
+    void set(const JulianDate& jd);
 
     /**
      * Initialize with a Gregorian date and time of day.  The time parameters
@@ -82,7 +82,7 @@ class JulianDate {
      * @param   min   Minutes from gd and hr
      * @param   sec   Seconds from gd, hr, and min
      */
-    void set(const GregDate &gd, int hr = 0, int min = 0, double sec = 0.0);
+    void set(const GregDate& gd, int hr = 0, int min = 0, double sec = 0.0);
 
 
     /**
@@ -126,7 +126,7 @@ class JulianDate {
      * @return  The days and fraction difference between the two Julian
      *          dates:  LargerJD - SmallerJD = PositiveDays
      */
-    double operator-(const JulianDate &jd);
+    double operator-(const JulianDate& jd);
 
       /**
        * @return   Gregorian Date and time as a string.  Time is
@@ -134,7 +134,7 @@ class JulianDate {
        */
     std::string to_str();
 
-//    friend std::ostream& operator<<(std::ostream &, const JulianDate &);
+//    friend std::ostream& operator<<(std::ostream&, const JulianDate&);
 
   private:
     double jdHi {J2000};                    // Days
@@ -143,8 +143,8 @@ class JulianDate {
 
     double gd2jd(int year, int month, int day);
     void normalize();
-    void jd2gd(int &year, int &month, int &day,
-               int &hour, int &minutes, double &seconds);
+    void jd2gd(int& year, int& month, int& day,
+               int& hour, int& minutes, double& seconds);
 };
 
 #endif  // ASTRO_JULIAN_DATE_H

@@ -22,8 +22,8 @@
 #include <astro_julian_date.h>
 
 
-CompRSS::CompRSS(const std::vector<std::string> &funct_params,
-                 const std::vector<std::unique_ptr<CompIFunction>> &comps)
+CompRSS::CompRSS(const std::vector<std::string>& funct_params,
+                 const std::vector<std::unique_ptr<CompIFunction>>& comps)
                                                  : CompIFunction(CompType::RSS)
 {
   comps_ptr = &comps;
@@ -63,7 +63,7 @@ CompRSS::CompRSS(const std::vector<std::string> &funct_params,
     if (nparams == 4) {
       try {
         CompIFunction::report_options(funct_params[3]);
-      } catch(std::invalid_argument &iae) {
+      } catch(std::invalid_argument& iae) {
         std::cerr << "\nInvalid report options: " << funct_params[3] << '\n';
         throw iae;
       }
@@ -73,7 +73,7 @@ CompRSS::CompRSS(const std::vector<std::string> &funct_params,
   }
 }
 
-void CompRSS::execute(const CompISimulation &ci)
+void CompRSS::execute(const CompISimulation& ci)
 {
     // check compatibility (type, number, delta)
   if (found  &&  (*comps_ptr)[f1ndx]->label().compare(label1) == 0  &&
@@ -103,7 +103,7 @@ void CompRSS::execute(const CompISimulation &ci)
   } 
 }
 
-void CompRSS::report(std::ostream &out) const
+void CompRSS::report(std::ostream& out) const
 {
     // Set scale factor to zero - if not set below then something is broken
   double ufactor {0.0};

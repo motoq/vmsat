@@ -15,7 +15,7 @@ double UT1mUTC::ut1Mutc(double jd) const
 }
 
 
-double UT1mUTC::ut1Mutc(const JulianDate &jdc) const
+double UT1mUTC::ut1Mutc(const JulianDate& jdc) const
 {
   return 0.0;
 }

@@ -16,7 +16,7 @@
  * Set whole and fractional values - seconds will be lumped with
  * fractional value (converted to days).
  */
-JulianDate::JulianDate(const JulianDate &jd)
+JulianDate::JulianDate(const JulianDate& jd)
 {
   this->set(jd);
 }
@@ -28,7 +28,7 @@ JulianDate::JulianDate(double jdDays, double jdFrac, double jdSeconds) :
 }
 
 
-JulianDate::JulianDate(const GregDate &gd, int hr, int min, double sec)
+JulianDate::JulianDate(const GregDate& gd, int hr, int min, double sec)
 {
   this->set(gd, hr, min, sec);
 }
@@ -38,7 +38,7 @@ JulianDate::JulianDate(const GregDate &gd, int hr, int min, double sec)
  * Set whole and fractional values - seconds will be lumped with
  * fractional value (converted to days).
  */
-void JulianDate::set(const JulianDate &jd)
+void JulianDate::set(const JulianDate& jd)
 {
   jdHi = jd.jdHiVal();
   jdLow = jd.jdLowVal();
@@ -54,7 +54,7 @@ void JulianDate::set(double jdDays, double jdFrac, double jdSeconds)
 }
 
 
-void JulianDate::set(const GregDate &gd, int hr, int min, double sec)
+void JulianDate::set(const GregDate& gd, int hr, int min, double sec)
 {
   jdSec = sec;
   jdHi = gd2jd(gd.year(), gd.month(), gd.day());
@@ -114,23 +114,23 @@ JulianDate& JulianDate::operator+=(double days)
 
 JulianDate JulianDate::operator+(double days)
 {
-  JulianDate jd{*this};
+  JulianDate jd {*this};
   jd += days;
 
   return jd;
 }
 
 
-double JulianDate::operator-(const JulianDate &jd)
+double JulianDate::operator-(const JulianDate& jd)
 {
   return this->jdHiVal() - jd.jdHiVal() + (this->jdLowVal() - jd.jdLowVal());
 }
 
 
 /*
-std::ostream& operator<<(std::ostream &out, const JulianDate &jd)
+std::ostream& operator<<(std::ostream& out, const JulianDate& jd)
 {
-  JulianDate jd2{jd};
+  JulianDate jd2 {jd};
   out << jd2.to_str();
   return out;
 }
@@ -218,8 +218,8 @@ void JulianDate::normalize()
  *   @param   minutes  Minutes, 0 <= minutes < 60                      (output)
  *   @param   seconds  Seconds, 0 <= seconds <= 60 (60th for leapsec)  (output)
  */
-void JulianDate::jd2gd(int &year, int &month, int &day,
-                       int &hour, int &minutes, double &seconds)
+void JulianDate::jd2gd(int& year, int& month, int& day,
+                       int& hour, int& minutes, double& seconds)
 {
     // Must get jdHi and jdLow in proper form first
   normalize();

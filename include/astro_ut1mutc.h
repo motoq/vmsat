@@ -33,7 +33,7 @@ class UT1mUTC {
      *
      * @return   UT1 - UTC, seconds
      */
-    double ut1Mutc(const JulianDate &jdc) const;
+    double ut1Mutc(const JulianDate& jdc) const;
 };
 
 #endif  // ASTRO_UT1MUTC_H

@@ -33,7 +33,7 @@ class LeapSec {
      *
      * @return   The number of leapseconds, TAI - UTC
      */
-    double taiMutc(const JulianDate &jdc) const;
+    double taiMutc(const JulianDate& jdc) const;
 };
 
 #endif  // ASTRO_LEAP_SEC_H

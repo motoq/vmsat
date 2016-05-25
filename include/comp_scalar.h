@@ -22,11 +22,11 @@
  */
 class CompScalar : public CompIRecord {
   public:
-    CompScalar(const JulianDate &jd, double  s);
+    CompScalar(const JulianDate& jd, double  s);
 
     double scalarValue() const { return sval; }
 
-    virtual double rss(CompIRecord *rec) const;
+    virtual double rss(CompIRecord* rec) const;
 
   private:
     double sval {0};

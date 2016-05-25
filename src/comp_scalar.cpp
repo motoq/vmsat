@@ -13,18 +13,17 @@
 #include <comp_scalar.h>
 #include <astro_julian_date.h>
 
-CompScalar::CompScalar(const JulianDate &jd, double  s)
+CompScalar::CompScalar(const JulianDate& jd, double  s)
 {
   CompIRecord::timeStamp(jd);
   sval = s;
 }
 
-double CompScalar::rss(CompIRecord *rec) const
+double CompScalar::rss(CompIRecord* rec) const
 {
   //std::unique_ptr<CompScalar> srec =
   //                          static_cast<std::unique_ptr<CompScalar>>(rec);
-  CompScalar *srec = dynamic_cast<CompScalar*>(rec);
+  CompScalar* srec = dynamic_cast<CompScalar*>(rec);
 
-  double residual = sval - srec->scalarValue();
-  return sqrt(residual*residual);
+  return fabs(sval - srec->scalarValue());
 }

@@ -22,14 +22,14 @@
 
 #include <sofa.h>
 
-CompEarthRot::CompEarthRot(const std::vector<std::string> &funct_params)
+CompEarthRot::CompEarthRot(const std::vector<std::string>& funct_params)
                                            : CompIFunction(CompType::EARTHROT)
 {
   int nparams = static_cast<int>(funct_params.size());
   if (nparams < 5  &&  nparams > 2) {
     try {
       er_type = earth_rot_table.at(funct_params[1]);
-    } catch(std::out_of_range &oor) {
+    } catch(std::out_of_range& oor) {
       std::cerr << "\nNot an Earth Rotation type: " << funct_params[1] << '\n';
       throw std::invalid_argument("Wrong number of EarthRot parameters");
     }
@@ -37,7 +37,7 @@ CompEarthRot::CompEarthRot(const std::vector<std::string> &funct_params)
     if (nparams == 4) {
       try {
         CompIFunction::report_options(funct_params[3]);
-      } catch(std::invalid_argument &iae) {
+      } catch(std::invalid_argument& iae) {
         std::cerr << "\nInvalid report options: " << funct_params[3] << '\n';
         throw iae;
       }
@@ -53,7 +53,7 @@ CompEarthRot::CompEarthRot(const std::vector<std::string> &funct_params)
   CompIFunction::add_unit_type(units, ufactor, offset);
 }
 
-void CompEarthRot::execute(const CompISimulation &ci)
+void CompEarthRot::execute(const CompISimulation& ci)
 {
   JulianDate jd_now = ci.startJD();
   JulianDate jd_stop = ci.startJD();
@@ -66,7 +66,7 @@ void CompEarthRot::execute(const CompISimulation &ci)
  
     // Increment time until the current time exceeds the stop time
   while (jd_stop - jd_now >= 0.0) {
-    double sval{0.0};
+    double sval {0.0};
     switch (er_type) {
         // For use with the IAU 1976 Precession and 1980 Nutation models
       case EarthRotType::GMST1982:
@@ -97,7 +97,7 @@ void CompEarthRot::execute(const CompISimulation &ci)
   CompIFunction::num_rec(static_cast<unsigned int>(cmp_lst.size()));
 }
 
-void CompEarthRot::report(std::ostream &out) const
+void CompEarthRot::report(std::ostream& out) const
 {
     // Set scale factor to zero - if not set below then something is broken
   double ufactor {0.0};

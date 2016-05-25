@@ -50,15 +50,15 @@ class CompRSS : public CompIFunction {
      *                             requested/compatible input labels in the
      *                             current list of functions being processed.
      */
-    CompRSS(const std::vector<std::string> &funct_params,
-            const std::vector<std::unique_ptr<CompIFunction>> &comps);
+    CompRSS(const std::vector<std::string>& funct_params,
+            const std::vector<std::unique_ptr<CompIFunction>>& comps);
 
     /**
      * Process analysis request using case definition values
      *
      * @param   cs   Calling simulation with general scenario information
      */
-    virtual void execute(const CompISimulation &);
+    virtual void execute(const CompISimulation& cs);
 
     /**
      * Create report of computed results consisting of formatted output
@@ -66,7 +66,7 @@ class CompRSS : public CompIFunction {
      *
      * @param   out   Stream for standard formatted output, if enabled.
      */
-    virtual void report(std::ostream &out) const;
+    virtual void report(std::ostream& out) const;
 
     /**
      * Retrieve a record of computed data given an index number.

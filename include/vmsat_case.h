@@ -91,7 +91,7 @@ class VmsatCase : public CompISimulation {
     /**
      * @param   Stream for which to push details about the requested scenario.
      */
-    void to_stream(std::ostream &os);
+    void to_stream(std::ostream& os);
 
     /** @return   Stream location at beginning of case description */
     std::streampos case_start() const { return case_pos0; }

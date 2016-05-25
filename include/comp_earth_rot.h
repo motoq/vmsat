@@ -61,14 +61,14 @@ class CompEarthRot : public CompIFunction {
      *
      * @throws   invalid_argument if there is an error parsing the inputs
      */
-    CompEarthRot(const std::vector<std::string> &funct_params);
+    CompEarthRot(const std::vector<std::string>& funct_params);
 
     /**
      * Process analysis request using case definition values
      *
      * @param   cs   Calling simulation with general scenario information
      */
-    virtual void execute(const CompISimulation & cs);
+    virtual void execute(const CompISimulation& cs);
 
     /**
      * Create report of computed results consisting of formatted output
@@ -76,7 +76,7 @@ class CompEarthRot : public CompIFunction {
      *
      * @param   out   Stream for standard formatted output, if enabled.
      */
-    virtual void report(std::ostream &out) const;
+    virtual void report(std::ostream& out) const;
 
     /**
      * Retrieve a record of computed data given an index number.
@@ -88,7 +88,7 @@ class CompEarthRot : public CompIFunction {
     LeapSec delta_at;
     UT1mUTC delta_ut;
     EarthRotType er_type;
-    double dt_min{1.0};
+    double dt_min {1.0};
     std::vector<CompScalar> cmp_lst;             // Saved outputs
 };
 

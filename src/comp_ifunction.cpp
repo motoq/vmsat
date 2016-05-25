@@ -67,7 +67,7 @@ void CompIFunction::report_options(const std::string& rptstr)
 
 std::array<int, 2> CompIFunction::find_comp_locs(
                      const std::string& lbl1, const  std::string& lbl2,
-                     const std::vector<std::unique_ptr<CompIFunction>> &comps)
+                     const std::vector<std::unique_ptr<CompIFunction>>& comps)
 {
   std::array<int, 2> vals {{ -1, -1}};
 

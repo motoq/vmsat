@@ -85,7 +85,7 @@ double LeapSec::taiMutc(double jd) const
 }
 
 
-double LeapSec::taiMutc(const JulianDate &jdc) const
+double LeapSec::taiMutc(const JulianDate& jdc) const
 {
   double jd {jdc.jd()};
   double leapsec {0.0};

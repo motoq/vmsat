@@ -65,14 +65,14 @@ class CompIFunction {
      *
      * @param   cs   Reference to simulation calling this function
      */
-    virtual void execute(const CompISimulation &cs) = 0;
+    virtual void execute(const CompISimulation& cs) = 0;
 
     /**
      * Report analysis results
      *
      * @param   out   Output stream for formatted output
      */
-    virtual void report(std::ostream &out) const = 0;
+    virtual void report(std::ostream& out) const = 0;
 
     /**
      * @return   Label attached to this instance of this function. This

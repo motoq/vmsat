@@ -24,10 +24,10 @@ class CompIRecord {
   public:
     JulianDate timeStamp() const { return jdval; }
 
-    virtual double rss(CompIRecord *rec) const = 0;
+    virtual double rss(CompIRecord* rec) const = 0;
 
   protected:
-    void timeStamp(const JulianDate &jd) { jdval = jd; }
+    void timeStamp(const JulianDate& jd) { jdval = jd; }
 
   private:
     JulianDate jdval;
