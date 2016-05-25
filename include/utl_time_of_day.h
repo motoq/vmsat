@@ -74,8 +74,8 @@ class TimeOfDay {
     double seconds() const { return sec; }
 
   private:
-    int hr{0}, mn{0};
-    double sec{0.0};
+    int hr {0}, mn {0};
+    double sec {0.0};
 };
 
 #endif  // UTL_TIME_OF_DAY_H
